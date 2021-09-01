@@ -64,6 +64,9 @@ line props = element (ElemName "line") props []
 text :: forall p i. Node I.SVGtext p i
 text = element (ElemName "text")
 
+use :: forall p i. Leaf I.SVGuse p i
+use props = element (ElemName "use") props []
+
 foreignObject :: forall p i . Node I.SVGforeignObject p i
 foreignObject = element (ElemName "foreignObject")
 

@@ -26,6 +26,7 @@ module Halogen.Svg.Indexed
   , SVGimage
   , SVGmpath
   , SVGtitle
+  , SVGuse
   ) where
 
 import Type.Row (type (+))
@@ -52,6 +53,7 @@ svg                   C   |     C     |     C      |   C   |   C   |    C
 g                     C   |     C     |     C      |   C   |   C   |    C
 marker                C   |     C     |     C      |   C   |   C   |    C
 foreignObject         C   |     C     |     C      |   C   |   C   |    C
+use                   -   |     -     |     -      |   -   |   -   |    -
 
 X indicates that the collection of attributes applies to that element
 - indicates that the collection of attributes does not apply to that element
@@ -233,6 +235,16 @@ type SVGtext
     , text_anchor :: String
     , dominant_baseline :: String
     , transform :: String
+    )
+
+type SVGuse
+  = GlobalAttributes
+  + ( x :: Number
+    , y :: Number
+    , width :: Number
+    , height :: Number
+    , transform :: String
+    , xlinkHref :: String
     )
 
 --------------------------------------------------------------------------------
