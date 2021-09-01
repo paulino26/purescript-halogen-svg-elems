@@ -18,6 +18,7 @@ module Halogen.Svg.Elements
   , circleNode
   , mpath
   , title
+  , use
   ) where
 -- Like Halogen.HTML.Elements
 
