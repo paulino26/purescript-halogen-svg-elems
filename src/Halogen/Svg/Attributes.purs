@@ -140,7 +140,7 @@ dominant_baseline = attr (H.AttrName "dominant-baseline") <<< printBaseline
 dur :: forall r i. Duration -> IProp (dur :: String | r) i
 dur = attr (H.AttrName "dur") <<< printDuration
 
-fill :: forall r i. Maybe Color -> IProp (fill :: String | r) i
+fill :: forall r i. Color -> IProp (fill :: String | r) i
 fill = attr (H.AttrName "fill") <<< printColor
 
 {- TODO this is just 'fill', but that function is already specialised to Color
