@@ -11,6 +11,8 @@ import Prelude
 import Data.String (toUpper)
 import Safe.Coerce (coerce)
 
+-- | Constructor intentionally not exported.
+-- | use `m`, `l`, `h`, `v`, `c`, `s`, `q`, `t`, `s`, or `z` instead.
 newtype PathCommand = PathCommand String
 
 derive instance eqPathCommand :: Eq PathCommand
