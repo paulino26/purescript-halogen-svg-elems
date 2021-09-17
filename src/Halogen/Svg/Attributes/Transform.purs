@@ -4,7 +4,7 @@ module Halogen.Svg.Attributes.Transform
   ) where
 
 import Prelude
-import Halogen.Svg.Attributes.Utils (printArray, showWithSpaces)
+import Halogen.Svg.Attributes.Utils (showWithSpaces)
 
 data Transform
   = Matrix Number Number Number Number Number Number
@@ -27,9 +27,9 @@ instance showTransform :: Show Transform where
 
 printTransform :: Transform -> String
 printTransform = case _ of
-  Matrix a b c d e f -> "matrix("    <> printArray [a, b, c, d, e, f] <> ")"
-  Translate x y      -> "translate(" <> printArray [x, y]             <> ")"
-  Scale x y          -> "scale("     <> printArray [x, y]             <> ")"
-  Rotate a x y       -> "rotate("    <> printArray [a, x, y]          <> ")"
+  Matrix a b c d e f -> "matrix("    <> show a <> "," <> show b <> "," <> show c <> "," <> show d <> "," <> show e <> "," <> show f <> ")"
+  Translate x y      -> "translate(" <> show x <> "," <> show y <> ")"
+  Scale x y          -> "scale("     <> show x <> "," <> show y <> ")"
+  Rotate a x y       -> "rotate("    <> show a <> "," <> show x <> "," <> show y <> ")"
   SkewX a            -> "skewX("     <> show a                        <> ")"
   SkewY a            -> "skewY("     <> show a                        <> ")"

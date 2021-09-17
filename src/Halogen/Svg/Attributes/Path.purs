@@ -9,7 +9,6 @@ module Halogen.Svg.Attributes.Path
 
 import Prelude
 import Data.String (toUpper)
-import Halogen.Svg.Attributes.Utils (printArray)
 import Safe.Coerce (coerce)
 
 newtype PathCommand = PathCommand String
@@ -87,7 +86,10 @@ v = renderCommand1Arg "v"
 c :: CommandPositionReference -> Number -> Number -> Number -> Number ->
      Number -> Number -> PathCommand
 c ref x1_ y1_ x2_ y2_ x_ y_ =
-  PathCommand $ renderCommand ref "c" <> printArray [x1_, y1_, x2_, y2_, x_, y_]
+  PathCommand $ renderCommand ref "c"
+    <> show x1_ <> "," <> show y1_
+    <> show x2_ <> "," <> show y2_
+    <> show x_ <> "," <> show y_
 
 s :: CommandPositionReference -> Number -> Number -> Number -> Number ->
      PathCommand

@@ -5,7 +5,7 @@ module Halogen.Svg.Attributes.Color
 
 import Prelude
 import Data.Maybe (Maybe(..))
-import Halogen.Svg.Attributes.Utils (printArray, showWithSpaces)
+import Halogen.Svg.Attributes.Utils (showWithSpaces)
 
 data Color = RGB Int Int Int
            | RGBA Int Int Int Number
@@ -23,7 +23,7 @@ instance showColor :: Show Color where
 
 printColor :: Color -> String
 printColor = case _ of
-  RGB r g b    -> "rgb("  <> printArray [r, g, b] <> ")"
-  RGBA r g b o -> "rgba(" <> printArray [r, g, b] <> "," <> show o <> ")"
+  RGB r g b    -> "rgb("  <> show r <> "," <> show g <> "," <> show b <> ")"
+  RGBA r g b o -> "rgba(" <> show r <> "," <> show g <> "," <> show b <> "," <> show o <> ")"
   Named str    -> str
   NoColor      -> "None"
