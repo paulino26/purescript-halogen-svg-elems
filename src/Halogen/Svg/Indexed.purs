@@ -86,21 +86,21 @@ type GlobalAttributes r = CoreAttributes + GlobalEventAttributes + r
 -- Presentation attributes, grouped by applicability (see table above) ---------
 type StrokeAttributes r =
   ( stroke :: String
-  , strokeDasharray :: String
-  , strokeDashoffset :: Number
+  , strokeDashArray :: String
+  , strokeDashOffset :: Number
   , strokeOpacity :: Number
   , strokeWidth :: Number
   | r
   )
 
 type StokeEndAttributes r =
-  ( strokeLinecap :: String
+  ( strokeLineCap :: String
   | r
   )
 
 type StrokeJoinAttributes r =
-  ( strokeLinejoin :: String
-  , strokeMiterlimit :: String
+  ( strokeLineJoin :: String
+  , strokeMiterLimit :: String
   | r
   )
 
@@ -118,13 +118,13 @@ type MarkerAttributes r =
   )
 
 type FontAttributes r =
-  ( font_family :: String
-  , font_size :: String
-  , font_sizeAdjust :: Number
-  , font_stretch :: String
-  , font_style :: String
-  , font_variant :: String
-  , font_weight :: String
+  ( fontFamily :: String
+  , fontSize :: String
+  , fontSizeAdjust :: Number
+  , fontStretch :: String
+  , fontStyle :: String
+  , fontVariant :: String
+  , fontWeight :: String
   | r
   )
 

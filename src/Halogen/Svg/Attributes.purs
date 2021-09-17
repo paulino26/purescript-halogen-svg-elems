@@ -26,18 +26,18 @@ module Halogen.Svg.Attributes
   , begin
   , cx, cy
   , d
-  , dominant_baseline
+  , dominantBaseline
   , dur
   , fill
   , fillAnim
   , fillOpacity
-  , font_family
-  , font_size
-  , font_size_adjust
-  , font_stretch
-  , font_style
-  , font_variant
-  , font_weight
+  , fontFamily
+  , fontSize
+  , fontSizeAdjust
+  , fontStretch
+  , fontStyle
+  , fontVariant
+  , fontWeight
   , from, to
   , href
   , id
@@ -54,14 +54,14 @@ module Halogen.Svg.Attributes
   , rx, ry
   , seconds
   , stroke
-  , stroke_dasharray
-  , stroke_dashoffset
-  , stroke_linecap
-  , stroke_linejoin
-  , stroke_miterlimit
-  , stroke_opacity
+  , strokeDashArray
+  , strokeDashOffset
+  , strokeLineCap
+  , strokeLineJoin
+  , strokeMiterLimit
+  , strokeOpacity
   , strokeWidth
-  , text_anchor
+  , textAnchor
   , transform
   , viewBox
   , width, height
@@ -126,8 +126,8 @@ cy = attr (H.AttrName "cy") <<< show
 d :: forall r i . Array PathCommand -> IProp (d :: String | r) i
 d = attr (H.AttrName "d") <<< joinWith " " <<< toArrayString
 
-dominant_baseline :: forall r i . Baseline -> IProp (transform :: String | r) i
-dominant_baseline = attr (H.AttrName "dominant-baseline") <<< printBaseline
+dominantBaseline :: forall r i . Baseline -> IProp (transform :: String | r) i
+dominantBaseline = attr (H.AttrName "dominant-baseline") <<< printBaseline
 
 dur :: forall r i. Duration -> IProp (dur :: String | r) i
 dur = attr (H.AttrName "dur") <<< printDuration
@@ -142,26 +142,26 @@ fillAnim = attr (H.AttrName "fill") <<< printFillState
 fillOpacity :: forall r i. Number -> IProp (fillOpacity :: Number | r) i
 fillOpacity = attr (H.AttrName "fill-opacity") <<< show
 
-font_family :: forall r i. String -> IProp (font_family :: String | r) i
-font_family = attr (H.AttrName "font-family")
+fontFamily :: forall r i. String -> IProp (fontFamily :: String | r) i
+fontFamily = attr (H.AttrName "font-family")
 
-font_size :: forall r i. FontSize -> IProp (font_size :: String | r) i
-font_size = attr (H.AttrName "font-size") <<< printFontSize
+fontSize :: forall r i. FontSize -> IProp (fontSize :: String | r) i
+fontSize = attr (H.AttrName "font-size") <<< printFontSize
 
-font_size_adjust :: forall r i. Number -> IProp (font_size_adjust :: String | r) i
-font_size_adjust = attr (H.AttrName "font-size-adjust") <<< show
+fontSizeAdjust :: forall r i. Number -> IProp (fontSizeAdjust :: String | r) i
+fontSizeAdjust = attr (H.AttrName "font-size-adjust") <<< show
 
-font_stretch :: forall r i. String -> IProp (font_stretch :: String | r) i
-font_stretch = attr (H.AttrName "font-stretch")
+fontStretch :: forall r i. String -> IProp (fontStretch :: String | r) i
+fontStretch = attr (H.AttrName "font-stretch")
 
-font_style :: forall r i. String -> IProp (font_style :: String | r) i
-font_style = attr (H.AttrName "font-style")
+fontStyle :: forall r i. String -> IProp (fontStyle :: String | r) i
+fontStyle = attr (H.AttrName "font-style")
 
-font_variant :: forall r i. String -> IProp (font_variant :: String | r) i
-font_variant = attr (H.AttrName "font-variant")
+fontVariant :: forall r i. String -> IProp (fontVariant :: String | r) i
+fontVariant = attr (H.AttrName "font-variant")
 
-font_weight :: forall r i. String -> IProp (font_weight :: String | r) i
-font_weight = attr (H.AttrName "font-weight")
+fontWeight :: forall r i. String -> IProp (fontWeight :: String | r) i
+fontWeight = attr (H.AttrName "font-weight")
 
 -- https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/from
 from :: forall r i. String -> IProp (from :: String | r) i
@@ -243,29 +243,29 @@ seconds s_ = Duration Nothing Nothing (Just s_) Nothing
 stroke :: forall r i. Color -> IProp (stroke :: String | r) i
 stroke = attr (H.AttrName "stroke") <<< printColor
 
-stroke_dasharray :: forall r i. String -> IProp (strokeDasharray :: String | r) i
-stroke_dasharray = attr (H.AttrName "stroke-dasharray")
+strokeDashArray :: forall r i. String -> IProp (strokeDashArray :: String | r) i
+strokeDashArray = attr (H.AttrName "stroke-dasharray")
 
-stroke_dashoffset :: forall r i. Number -> IProp (strokeDashoffset :: String | r) i
-stroke_dashoffset = attr (H.AttrName "stroke-dashoffset") <<< show
+strokeDashOffset :: forall r i. Number -> IProp (strokeDashOffset :: String | r) i
+strokeDashOffset = attr (H.AttrName "stroke-dashoffset") <<< show
 
-stroke_linecap :: forall r i. String -> IProp (strokeLinecap :: String | r) i
-stroke_linecap = attr (H.AttrName "stroke-linecap")
+strokeLineCap :: forall r i. String -> IProp (strokeLineCap :: String | r) i
+strokeLineCap = attr (H.AttrName "stroke-linecap")
 
-stroke_linejoin :: forall r i. String -> IProp (strokeLinejoin :: String | r) i
-stroke_linejoin = attr (H.AttrName "stroke-linejoin")
+strokeLineJoin :: forall r i. String -> IProp (strokeLineJoin :: String | r) i
+strokeLineJoin = attr (H.AttrName "stroke-linejoin")
 
-stroke_miterlimit :: forall r i. String -> IProp (strokeMiterlimit :: String | r) i
-stroke_miterlimit = attr (H.AttrName "stroke-miterlimit")
+strokeMiterLimit :: forall r i. String -> IProp (strokeMiterLimit :: String | r) i
+strokeMiterLimit = attr (H.AttrName "stroke-miterlimit")
 
-stroke_opacity :: forall r i. Number -> IProp (strokeOpacity :: String | r) i
-stroke_opacity = attr (H.AttrName "stroke-opacity") <<< show
+strokeOpacity :: forall r i. Number -> IProp (strokeOpacity :: String | r) i
+strokeOpacity = attr (H.AttrName "stroke-opacity") <<< show
 
 strokeWidth :: forall r i. Number -> IProp (strokeWidth :: Number | r) i
 strokeWidth = attr (H.AttrName "stroke-width") <<< show
 
-text_anchor :: forall r i . TextAnchor -> IProp (text_anchor :: String | r) i
-text_anchor = attr (H.AttrName "text-anchor") <<< printTextAnchor
+textAnchor :: forall r i . TextAnchor -> IProp (textAnchor :: String | r) i
+textAnchor = attr (H.AttrName "text-anchor") <<< printTextAnchor
 
 transform :: forall r i . Array Transform -> IProp (transform :: String | r) i
 transform = attr (H.AttrName "transform") <<< joinWith " " <<< map printTransform
