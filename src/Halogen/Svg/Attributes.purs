@@ -135,8 +135,7 @@ dur = attr (H.AttrName "dur") <<< printDuration
 fill :: forall r i. Color -> IProp (fill :: String | r) i
 fill = attr (H.AttrName "fill") <<< printColor
 
-{- TODO this is just 'fill', but that function is already specialised to Color
-   in this module -}
+-- Note: same as 'fill' but that function is already specialised to Color
 fillAnim :: forall r i. FillState -> IProp (fill :: String | r) i
 fillAnim = attr (H.AttrName "fill") <<< printFillState
 
