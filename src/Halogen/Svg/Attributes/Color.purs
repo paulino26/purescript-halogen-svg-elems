@@ -4,7 +4,6 @@ module Halogen.Svg.Attributes.Color
   ) where
 
 import Prelude
-import Data.Maybe (Maybe(..))
 
 data Color = RGB Int Int Int
            | RGBA Int Int Int Number
