@@ -20,7 +20,7 @@ data CSSLength
   | Vmin Number
   | Vmax Number
   | Pct Number
-  | Nil
+  | NoCSSLength
 
 derive instance eqCSSLength :: Eq CSSLength
 
@@ -40,7 +40,7 @@ instance showCSSLength :: Show CSSLength where
     Vmin i   -> show i <> "vmin"
     Vmax i   -> show i <> "vmax"
     Pct i    -> show i <> "%"
-    Nil      -> "0"
+    NoCSSLength -> "0"
 -- This instance of Show is currently identical to printCSSLength. That is
 -- likely to change so don't rely on it
 
@@ -60,4 +60,4 @@ printCSSLength = case _ of
   Vmin i   -> show i <> "vmin"
   Vmax i   -> show i <> "vmax"
   Pct i    -> show i <> "%"
-  Nil      -> "0"
+  NoCSSLength -> "0"
