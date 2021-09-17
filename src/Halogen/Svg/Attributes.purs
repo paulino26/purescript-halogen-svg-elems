@@ -249,7 +249,7 @@ ry = attr (H.AttrName "ry") <<< show
 seconds :: Number -> Duration
 seconds s_ = Duration Nothing Nothing (Just s_) Nothing
 
-stroke :: forall r i. Maybe Color -> IProp (stroke :: String | r) i
+stroke :: forall r i. Color -> IProp (stroke :: String | r) i
 stroke = attr (H.AttrName "stroke") <<< printColor
 
 stroke_dasharray :: forall r i. String -> IProp (strokeDasharray :: String | r) i
