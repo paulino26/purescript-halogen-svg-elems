@@ -6,20 +6,20 @@ module Halogen.Svg.Attributes.TextAnchor
 import Prelude
 
 data TextAnchor
-  = Start
+  = AnchorStart
   | AnchorMiddle
-  | End
+  | AnchorEnd
 
 derive instance eqTextAnchor :: Eq TextAnchor
 
 instance showTextAnchor :: Show TextAnchor where
   show = case _ of
-    Start        -> "Start"
+    AnchorStart  -> "Start"
     AnchorMiddle -> "AnchorMiddle"
-    End          -> "End"
+    AnchorEnd    -> "End"
 
 printTextAnchor :: TextAnchor -> String
 printTextAnchor = case _ of
-  Start        -> "start"
+  AnchorStart  -> "start"
   AnchorMiddle -> "middle"
-  End          -> "end"
+  AnchorEnd    -> "end"
