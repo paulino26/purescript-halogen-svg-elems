@@ -74,7 +74,6 @@ module Halogen.Svg.Attributes
 
 import Prelude
 import Data.Maybe (Maybe(..))
-import Data.Newtype (un)
 import Data.String (joinWith)
 import Halogen.HTML.Core as H
 import Halogen.HTML.Properties (IProp, attrNS)
@@ -94,7 +93,6 @@ import Halogen.Svg.Attributes.Orient (Orient(..), printOrient)
 import Halogen.Svg.Attributes.TextAnchor (TextAnchor(..), printTextAnchor)
 import Halogen.Svg.Attributes.Transform (Transform(..), printTransform)
 import Halogen.Svg.Core as Core
-import Safe.Coerce (coerce)
 import Unsafe.Coerce (unsafeCoerce)
 import Halogen.Svg.Attributes.Path (
   PathCommand,
