@@ -10,6 +10,7 @@
     "svg"
   ],
   "scripts": {
-    "test": "spago bundle-app -m Test.Main -t dist/test.js"
+    "test": "spago bundle-app -m Test.Main -t dist/test.js",
+    "format": "purs-tidy format-in-place src test"
   }
 }
