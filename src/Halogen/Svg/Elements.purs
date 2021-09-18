@@ -23,25 +23,16 @@ module Halogen.Svg.Elements
 -- Like Halogen.HTML.Elements
 
 import Prelude
-import Halogen.HTML.Core (HTML, Prop, ElemName(ElemName))
-import Halogen.HTML.Elements (Node, Leaf)
+import Halogen.HTML.Core (HTML, ElemName(..), Namespace(..))
+import Halogen.HTML.Elements (Node, Leaf, elementNS)
 import Halogen.HTML.Properties (IProp)
-import Halogen.Svg.Core as Core
 import Halogen.Svg.Indexed as I
-import Unsafe.Coerce (unsafeCoerce)
 
-element
-  :: forall r p i
-   . ElemName
-  -> Array (IProp r i)
-  -> Array (HTML p i)
-  -> HTML p i
-element = coe Core.element
-  where
-  coe
-    :: (ElemName -> Array (Prop i) -> Array (HTML p i) -> HTML p i)
-    -> (ElemName -> Array (IProp r i) -> Array (HTML p i) -> HTML p i)
-  coe = unsafeCoerce
+-- | This `element`rather than `Halogen.HTML.Elements.element` must be used
+-- | because all SVG elements created via JavaScript must have the svg namespace:
+-- | `"http://www.w3.org/2000/svg"`
+element :: forall r w i . ElemName -> Array (IProp r i) -> Array (HTML w i) -> HTML w i
+element = elementNS (Namespace "http://www.w3.org/2000/svg")
 
 svg :: forall p i. Node I.SVGsvg p i
 svg = element $ ElemName "svg"

@@ -20,7 +20,6 @@ module Halogen.Svg.Attributes
   , module Halogen.Svg.Attributes.Path
   , module Halogen.Svg.Attributes.TextAnchor
   , module Halogen.Svg.Attributes.Transform
-  , attr
   , attributeName
   , begin
   , class_
@@ -87,15 +86,16 @@ module Halogen.Svg.Attributes
 -- Like Halogen.HTML.Properties
 
 import Prelude
+
 import Data.Maybe (Maybe(..), maybe)
 import Data.Newtype (un)
 import Data.String (joinWith)
 import Halogen.HTML.Core as H
-import Halogen.HTML.Properties (IProp, attrNS)
+import Halogen.HTML.Properties (IProp, attr, attrNS)
 import Halogen.Svg.Attributes.Align (Align(..), printAlign)
 import Halogen.Svg.Attributes.Baseline (Baseline(..), printBaseline)
-import Halogen.Svg.Attributes.Color (Color(..), printColor)
 import Halogen.Svg.Attributes.CSSLength (CSSLength(..), printCSSLength)
+import Halogen.Svg.Attributes.Color (Color(..), printColor)
 import Halogen.Svg.Attributes.Duration (Duration)
 import Halogen.Svg.Attributes.FillState (FillState(..), printFillState)
 import Halogen.Svg.Attributes.FontSize (FontSize(..), printFontSize)
@@ -103,34 +103,10 @@ import Halogen.Svg.Attributes.MarkerUnit (MarkerUnit(..), printMarkerUnit)
 import Halogen.Svg.Attributes.MaskUnit (MaskUnit(..), printMaskUnit)
 import Halogen.Svg.Attributes.MeetOrSlice (MeetOrSlice(..), printMeetOrSlice)
 import Halogen.Svg.Attributes.Orient (Orient(..), printOrient)
+import Halogen.Svg.Attributes.Path (PathCommand, CommandPositionReference(..), CommandArcChoice(..), CommandSweepChoice(..), toArrayString, m, l, h, v, c, s, q, t, a, z)
 import Halogen.Svg.Attributes.TextAnchor (TextAnchor(..), printTextAnchor)
 import Halogen.Svg.Attributes.Transform (Transform(..), printTransform)
-import Halogen.Svg.Core as Core
 import Safe.Coerce (coerce)
-import Unsafe.Coerce (unsafeCoerce)
-import Halogen.Svg.Attributes.Path
-  ( PathCommand
-  , CommandPositionReference(..)
-  , CommandArcChoice(..)
-  , CommandSweepChoice(..)
-  , toArrayString
-  , m
-  , l
-  , h
-  , v
-  , c
-  , s
-  , q
-  , t
-  , a
-  , z
-  )
-
-attr :: forall r i. H.AttrName -> String -> IProp r i
-attr = coe Core.attr
-  where
-  coe :: (H.AttrName -> String -> H.Prop i) -> H.AttrName -> String -> IProp r i
-  coe = unsafeCoerce
 
 -- TODO ADT or free string?
 attributeName :: forall r i. String -> IProp (attributeName :: String | r) i
