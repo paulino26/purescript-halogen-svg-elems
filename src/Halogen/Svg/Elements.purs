@@ -29,7 +29,7 @@ import Halogen.HTML.Elements (Node, Leaf, elementNS)
 import Halogen.HTML.Properties (IProp)
 import Halogen.Svg.Indexed as I
 
--- | This `element`rather than `Halogen.HTML.Elements.element` must be used
+-- | This `element` rather than `Halogen.HTML.Elements.element` must be used
 -- | because all SVG elements created via JavaScript must have the svg namespace:
 -- | `"http://www.w3.org/2000/svg"`
 element :: forall r w i. ElemName -> Array (IProp r i) -> Array (HTML w i) -> HTML w i
