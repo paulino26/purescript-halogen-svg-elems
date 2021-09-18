@@ -257,7 +257,10 @@ type SVGtext
     )
 
 type SVGuse
-  = GlobalAttributes + StrokeAttributes + FillAttributes
+  = GlobalAttributes + CanBeMaskedAttributes + StrokeAttributes + StokeEndAttributes
+  + StrokeJoinAttributes
+  + FillAttributes
+  + FontAttributes
   +
     ( x :: Number
     , y :: Number
