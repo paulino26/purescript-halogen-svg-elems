@@ -13,4 +13,5 @@ beginElements :: CssSelector -> Aff Int
 beginElements = fromEffectFnAff <<< _beginElements
 
 type Vec2 a = { x :: a, y :: a }
+
 foreign import domToSvgCoordinates :: HTMLElement -> Vec2 Int -> Vec2 Int

@@ -18,5 +18,5 @@ instance showMeetOrSlice :: Show MeetOrSlice where
 
 printMeetOrSlice :: MeetOrSlice -> String
 printMeetOrSlice = case _ of
-  Meet  -> "meet"
+  Meet -> "meet"
   Slice -> "slice"

@@ -4,7 +4,16 @@ module Halogen.Svg.Attributes.Path
   , CommandArcChoice(..)
   , CommandSweepChoice(..)
   , toArrayString
-  , m, l, h, v, c, s, q, t, a, z
+  , m
+  , l
+  , h
+  , v
+  , c
+  , s
+  , q
+  , t
+  , a
+  , z
   ) where
 
 import Prelude
@@ -85,36 +94,74 @@ h = renderCommand1Arg "h"
 v :: CommandPositionReference -> Number -> PathCommand
 v = renderCommand1Arg "v"
 
-c :: CommandPositionReference -> Number -> Number -> Number -> Number ->
-     Number -> Number -> PathCommand
+c
+  :: CommandPositionReference
+  -> Number
+  -> Number
+  -> Number
+  -> Number
+  -> Number
+  -> Number
+  -> PathCommand
 c ref x1_ y1_ x2_ y2_ x_ y_ =
   PathCommand $ renderCommand ref "c"
-    <> show x1_ <> "," <> show y1_
-    <> show x2_ <> "," <> show y2_
-    <> show x_ <> "," <> show y_
+    <> show x1_
+    <> ","
+    <> show y1_
+    <> show x2_
+    <> ","
+    <> show y2_
+    <> show x_
+    <> ","
+    <> show y_
 
-s :: CommandPositionReference -> Number -> Number -> Number -> Number ->
-     PathCommand
+s
+  :: CommandPositionReference
+  -> Number
+  -> Number
+  -> Number
+  -> Number
+  -> PathCommand
 s = renderCommand4Args "s"
 
-q :: CommandPositionReference -> Number -> Number -> Number -> Number ->
-     PathCommand
+q
+  :: CommandPositionReference
+  -> Number
+  -> Number
+  -> Number
+  -> Number
+  -> PathCommand
 q = renderCommand4Args "q"
 
 t :: CommandPositionReference -> Number -> Number -> PathCommand
 t = renderCommand2Args "t"
 
-a :: CommandPositionReference -> Number -> Number -> Number ->
-     CommandArcChoice -> CommandSweepChoice -> Number -> Number -> PathCommand
+a
+  :: CommandPositionReference
+  -> Number
+  -> Number
+  -> Number
+  -> CommandArcChoice
+  -> CommandSweepChoice
+  -> Number
+  -> Number
+  -> PathCommand
 a ref rx_ ry_ rot arc sweep x_ y_ = PathCommand $
-  renderCommand ref "a" <>
-  show rx_ <> ", " <>
-  show ry_ <> ", " <>
-  show rot <> " " <>
-  printCommandArcChoice arc <> " " <>
-  printCommandSweepChoice sweep <> " " <>
-  show x_ <> " " <>
-  show y_
+  renderCommand ref "a"
+    <> show rx_
+    <> ", "
+    <> show ry_
+    <> ", "
+    <> show rot
+    <> " "
+    <> printCommandArcChoice arc
+    <> " "
+    <> printCommandSweepChoice sweep
+    <> " "
+    <> show x_
+    <> " "
+    <>
+      show y_
 
 z :: PathCommand
 z = PathCommand "z"
@@ -124,14 +171,26 @@ renderCommand1Arg :: String -> CommandPositionReference -> Number -> PathCommand
 renderCommand1Arg s_ ref a_ = PathCommand $ (renderCommand ref s_) <> show a_
 
 -- For internal use. Do not export.
-renderCommand2Args ::
-  String -> CommandPositionReference -> Number -> Number -> PathCommand
+renderCommand2Args
+  :: String -> CommandPositionReference -> Number -> Number -> PathCommand
 renderCommand2Args s_ ref a_ b =
   PathCommand $ (renderCommand ref s_) <> show a_ <> ", " <> show b
 
 -- For internal use. Do not export.
-renderCommand4Args :: String -> CommandPositionReference -> Number -> Number ->
-                      Number -> Number -> PathCommand
+renderCommand4Args
+  :: String
+  -> CommandPositionReference
+  -> Number
+  -> Number
+  -> Number
+  -> Number
+  -> PathCommand
 renderCommand4Args s_ ref a_ b c_ d_ =
-  PathCommand $ (renderCommand ref s_) <>
-    show a_ <> ", " <> show b <> ", " <> show c_ <> ", " <> show d_
+  PathCommand $ (renderCommand ref s_)
+    <> show a_
+    <> ", "
+    <> show b
+    <> ", "
+    <> show c_
+    <> ", "
+    <> show d_

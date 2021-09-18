@@ -60,7 +60,7 @@ C indicates that the collection of attributes does not apply to that element
 -}
 
 -- These core attributes are applicable to every element
-type CoreAttributes r = ( id :: String, "class" :: String | r)
+type CoreAttributes r = (id :: String, "class" :: String | r)
 
 -- Subset of events that work on Firefox 60/Chromium 66
 type GlobalEventAttributes r =
@@ -135,12 +135,17 @@ type CanBeMaskedAttributes r =
 
 type AllPresentationAttributes r
   = StrokeAttributes + StrokeJoinAttributes + StokeEndAttributes
-  + FillAttributes + FontAttributes + MarkerAttributes + CanBeMaskedAttributes + r
+  + FillAttributes
+  + FontAttributes
+  + MarkerAttributes
+  + CanBeMaskedAttributes
+  + r
 
 -- Specific SVG elements -------------------------------------------------------
 type SVGsvg
   = GlobalAttributes + AllPresentationAttributes
-  + ( width :: Number
+  +
+    ( width :: Number
     , height :: Number
     , viewBox :: String
     , preserveAspectRatio :: String
@@ -148,11 +153,12 @@ type SVGsvg
 
 type SVGg
   = GlobalAttributes + AllPresentationAttributes
-  + ( transform :: String )
+  + (transform :: String)
 
 type SVGforeignObject
   = GlobalAttributes + AllPresentationAttributes
-  + ( x :: Number
+  +
+    ( x :: Number
     , y :: Number
     , height :: Number
     , width :: Number
@@ -160,7 +166,8 @@ type SVGforeignObject
 
 type SVGmarker
   = GlobalAttributes + AllPresentationAttributes
-  + ( markerWidth :: Number
+  +
+    ( markerWidth :: Number
     , markerHeight :: Number
     , strokeWidth :: Number
     , refX :: Number
@@ -171,7 +178,8 @@ type SVGmarker
 
 type SVGmask
   = GlobalAttributes + AllPresentationAttributes
-  + ( transform :: String
+  +
+    ( transform :: String
     , x :: Number
     , y :: Number
     , width :: Number
@@ -182,7 +190,8 @@ type SVGmask
 
 type SVGcircle
   = GlobalAttributes + CanBeMaskedAttributes + StrokeAttributes + FillAttributes + MarkerAttributes
-  + ( cx :: Number
+  +
+    ( cx :: Number
     , cy :: Number
     , r :: Number
     , transform :: String
@@ -190,7 +199,8 @@ type SVGcircle
 
 type SVGellipse
   = GlobalAttributes + CanBeMaskedAttributes + StrokeAttributes + FillAttributes + MarkerAttributes
-  + ( cx :: Number
+  +
+    ( cx :: Number
     , cy :: Number
     , rx :: Number
     , ry :: Number
@@ -199,7 +209,8 @@ type SVGellipse
 
 type SVGline
   = GlobalAttributes + CanBeMaskedAttributes + StrokeAttributes + StokeEndAttributes + MarkerAttributes
-  + ( x1 :: Number
+  +
+    ( x1 :: Number
     , y1 :: Number
     , x2 :: Number
     , y2 :: Number
@@ -208,15 +219,20 @@ type SVGline
 
 type SVGpath
   = GlobalAttributes + CanBeMaskedAttributes + StrokeAttributes + StokeEndAttributes
-  + StrokeJoinAttributes + FillAttributes + MarkerAttributes
-  + ( d :: String
+  + StrokeJoinAttributes
+  + FillAttributes
+  + MarkerAttributes
+  +
+    ( d :: String
     , transform :: String
     )
 
 type SVGrect
   = GlobalAttributes + CanBeMaskedAttributes + StrokeAttributes + StrokeJoinAttributes
-  + FillAttributes + MarkerAttributes
-  + ( x :: Number
+  + FillAttributes
+  + MarkerAttributes
+  +
+    ( x :: Number
     , y :: Number
     , rx :: Number
     , ry :: Number
@@ -227,8 +243,11 @@ type SVGrect
 
 type SVGtext
   = GlobalAttributes + CanBeMaskedAttributes + StrokeAttributes + StokeEndAttributes
-  + StrokeJoinAttributes + FillAttributes + FontAttributes
-  + ( x :: Number
+  + StrokeJoinAttributes
+  + FillAttributes
+  + FontAttributes
+  +
+    ( x :: Number
     , y :: Number
     , text_anchor :: String
     , dominant_baseline :: String
@@ -246,8 +265,9 @@ type AnimationAttributes r = GlobalAttributes
   , fill :: String
   | r
   )
+
 {- ^ Unlike `fill` in `GlobalAttributes`, `fill` in `AnimationAttributes` is
-     intended to record a `FillState` via `fillAnim`. -}
+intended to record a `FillState` via `fillAnim`. -}
 
 type SVGanimate = AnimationAttributes (attributeName :: String)
 
@@ -255,13 +275,13 @@ type SVGanimateMotion = AnimationAttributes (path :: String)
 
 type SVGimage
   = GlobalAttributes
-      ( x :: Number
-      , y :: Number
-      , width :: Number
-      , height :: Number
-      , href :: String
-      , preserveAspectRatio :: String
-      )
+  ( x :: Number
+  , y :: Number
+  , width :: Number
+  , height :: Number
+  , href :: String
+  , preserveAspectRatio :: String
+  )
 
 -- TODO should this have GlobalAttributes?
 type SVGmpath = (xlinkHref :: String)

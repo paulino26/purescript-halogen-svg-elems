@@ -32,6 +32,7 @@ instance showFontSize :: Show FontSize where
     Smaller -> "smaller"
     Larger -> "larger"
     FontSizeLength l -> printCSSLength l
+
 -- This instance of Show is currently identical to printCSSLength. That is
 -- likely to change so don't rely on it
 

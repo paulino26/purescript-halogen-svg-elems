@@ -24,7 +24,8 @@ module Halogen.Svg.Attributes
   , attr
   , attributeName
   , begin
-  , cx, cy
+  , cx
+  , cy
   , d
   , dominantBaseline
   , dur
@@ -38,20 +39,28 @@ module Halogen.Svg.Attributes
   , fontStyle
   , fontVariant
   , fontWeight
-  , from, to
+  , from
+  , to
   , href
   , id
-  , markerStart, markerMid, markerEnd
+  , markerStart
+  , markerMid
+  , markerEnd
   , markerUnits
-  , markerWidth, markerHeight
-  , mask, maskUnits, maskContentUnits
+  , markerWidth
+  , markerHeight
+  , mask
+  , maskUnits
+  , maskContentUnits
   , orient
   , path
   , preserveAspectRatio
   , r
-  , refX, refY
+  , refX
+  , refY
   , repeatCount
-  , rx, ry
+  , rx
+  , ry
   , stroke
   , strokeDashArray
   , strokeDashOffset
@@ -63,12 +72,17 @@ module Halogen.Svg.Attributes
   , textAnchor
   , transform
   , viewBox
-  , width, height
-  , x, y
-  , x1, y1
-  , x2, y2
+  , width
+  , height
+  , x
+  , y
+  , x1
+  , y1
+  , x2
+  , y2
   , xlinkHref
   ) where
+
 -- Like Halogen.HTML.Properties
 
 import Prelude
@@ -92,20 +106,29 @@ import Halogen.Svg.Attributes.TextAnchor (TextAnchor(..), printTextAnchor)
 import Halogen.Svg.Attributes.Transform (Transform(..), printTransform)
 import Halogen.Svg.Core as Core
 import Unsafe.Coerce (unsafeCoerce)
-import Halogen.Svg.Attributes.Path (
-  PathCommand,
-  CommandPositionReference(..),
-  CommandArcChoice(..),
-  CommandSweepChoice(..),
-  toArrayString,
-  m, l, h, v, c, s, q, t, a, z
+import Halogen.Svg.Attributes.Path
+  ( PathCommand
+  , CommandPositionReference(..)
+  , CommandArcChoice(..)
+  , CommandSweepChoice(..)
+  , toArrayString
+  , m
+  , l
+  , h
+  , v
+  , c
+  , s
+  , q
+  , t
+  , a
+  , z
   )
 
 attr :: forall r i. H.AttrName -> String -> IProp r i
 attr = coe Core.attr
   where
-    coe :: (H.AttrName -> String -> H.Prop i) -> H.AttrName -> String -> IProp r i
-    coe = unsafeCoerce
+  coe :: (H.AttrName -> String -> H.Prop i) -> H.AttrName -> String -> IProp r i
+  coe = unsafeCoerce
 
 -- TODO ADT or free string?
 attributeName :: forall r i. String -> IProp (attributeName :: String | r) i
@@ -121,10 +144,10 @@ cx = attr (H.AttrName "cx") <<< show
 cy :: forall r i. Number -> IProp (cy :: Number | r) i
 cy = attr (H.AttrName "cy") <<< show
 
-d :: forall r i . Array PathCommand -> IProp (d :: String | r) i
+d :: forall r i. Array PathCommand -> IProp (d :: String | r) i
 d = attr (H.AttrName "d") <<< joinWith " " <<< toArrayString
 
-dominantBaseline :: forall r i . Baseline -> IProp (transform :: String | r) i
+dominantBaseline :: forall r i. Baseline -> IProp (transform :: String | r) i
 dominantBaseline = attr (H.AttrName "dominant-baseline") <<< printBaseline
 
 dur :: forall r i. Duration -> IProp (dur :: String | r) i
@@ -175,7 +198,7 @@ from = attr (H.AttrName "from")
 to :: forall r i. String -> IProp (to :: String | r) i
 to = attr (H.AttrName "to")
 
-id :: forall r i . String -> IProp (id :: String | r) i
+id :: forall r i. String -> IProp (id :: String | r) i
 id = attr (H.AttrName "id")
 
 markerStart :: forall r i. String -> IProp (markerStart :: String | r) i
@@ -209,18 +232,21 @@ orient :: forall r i. Orient -> IProp (orient :: String | r) i
 orient = attr (H.AttrName "orient") <<< printOrient
 
 -- TODO copied from `d`; adapt where needed
-path :: forall r i . Array PathCommand -> IProp (path :: String | r) i
+path :: forall r i. Array PathCommand -> IProp (path :: String | r) i
 path = attr (H.AttrName "path") <<< joinWith " " <<< toArrayString
 
-preserveAspectRatio :: forall r i. Maybe {x_ :: Align, y_ :: Align} ->
-  MeetOrSlice -> IProp (preserveAspectRatio :: String | r) i
+preserveAspectRatio
+  :: forall r i
+   . Maybe { x_ :: Align, y_ :: Align }
+  -> MeetOrSlice
+  -> IProp (preserveAspectRatio :: String | r) i
 preserveAspectRatio align slice = attr
   (H.AttrName "preserveAspectRatio")
-  (joinWith " " $ [align_str, printMeetOrSlice slice])
+  (joinWith " " $ [ align_str, printMeetOrSlice slice ])
   where
-    align_str = case align of
-      Nothing -> "none"
-      Just {x_, y_} -> joinWith "" $ ["x", printAlign x_, "Y", printAlign y_]
+  align_str = case align of
+    Nothing -> "none"
+    Just { x_, y_ } -> joinWith "" $ [ "x", printAlign x_, "Y", printAlign y_ ]
 
 r :: forall s i. Number -> IProp (r :: Number | s) i
 r = attr (H.AttrName "r") <<< show
@@ -264,16 +290,21 @@ strokeOpacity = attr (H.AttrName "stroke-opacity") <<< show
 strokeWidth :: forall r i. Number -> IProp (strokeWidth :: Number | r) i
 strokeWidth = attr (H.AttrName "stroke-width") <<< show
 
-textAnchor :: forall r i . TextAnchor -> IProp (textAnchor :: String | r) i
+textAnchor :: forall r i. TextAnchor -> IProp (textAnchor :: String | r) i
 textAnchor = attr (H.AttrName "text-anchor") <<< printTextAnchor
 
-transform :: forall r i . Array Transform -> IProp (transform :: String | r) i
+transform :: forall r i. Array Transform -> IProp (transform :: String | r) i
 transform = attr (H.AttrName "transform") <<< joinWith " " <<< map printTransform
 
-viewBox :: forall r i.
-  Number -> Number -> Number -> Number -> IProp (viewBox :: String | r) i
+viewBox
+  :: forall r i
+   . Number
+  -> Number
+  -> Number
+  -> Number
+  -> IProp (viewBox :: String | r) i
 viewBox x_ y_ w h_ =
-  attr (H.AttrName "viewBox") (joinWith " " $ map show [x_, y_, w, h_])
+  attr (H.AttrName "viewBox") (joinWith " " $ map show [ x_, y_, w, h_ ])
 
 width :: forall r i. Number -> IProp (width :: Number | r) i
 width = attr (H.AttrName "width") <<< show
@@ -299,7 +330,7 @@ x2 = attr (H.AttrName "x2") <<< show
 y2 :: forall r i. Number -> IProp (y2 :: Number | r) i
 y2 = attr (H.AttrName "y2") <<< show
 
-href :: forall r i. String -> IProp ( href :: String | r ) i
+href :: forall r i. String -> IProp (href :: String | r) i
 href = attr (H.AttrName "href")
 
 -- TODO xlink:href seems to have some issues, among others around its namespace
