@@ -17,6 +17,8 @@ module Halogen.Svg.Indexed
   , SVGcircle
   , SVGellipse
   , SVGline
+  , SVGpolyline
+  , SVGpolygon
   , SVGpath
   , SVGrect
   , SVGtext
@@ -29,6 +31,7 @@ module Halogen.Svg.Indexed
   , SVGuse
   ) where
 
+import Data.Tuple (Tuple)
 import Type.Row (type (+))
 import Web.UIEvent.KeyboardEvent (KeyboardEvent)
 import Web.UIEvent.MouseEvent (MouseEvent)
@@ -217,6 +220,20 @@ type SVGline
     , x2 :: Number
     , y2 :: Number
     , transform :: String
+    )
+
+type SVGpolyline
+  = GlobalAttributes + CanBeMaskedAttributes + StrokeAttributes + StokeEndAttributes + MarkerAttributes
+  +
+    ( points :: Array (Tuple Number Number)
+    , pathLength :: Number
+    )
+
+type SVGpolygon
+  = GlobalAttributes + CanBeMaskedAttributes + StrokeAttributes + StokeEndAttributes + MarkerAttributes
+  +
+    ( points :: Array (Tuple Number Number)
+    , pathLength :: Number
     )
 
 type SVGpath

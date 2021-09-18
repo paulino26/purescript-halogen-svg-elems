@@ -59,6 +59,8 @@ module Halogen.Svg.Attributes
   , maskContentUnits
   , orient
   , path
+  , points
+  , pathLength
   , preserveAspectRatio
   , r
   , refX
@@ -92,9 +94,11 @@ module Halogen.Svg.Attributes
 
 import Prelude
 
+import Data.Array as Array
 import Data.Maybe (Maybe(..), maybe)
 import Data.Newtype (un)
 import Data.String (joinWith)
+import Data.Tuple (Tuple(..))
 import Halogen.HTML.Core as H
 import Halogen.HTML.Properties (IProp, attr, attrNS)
 import Halogen.Svg.Attributes.Align (Align(..), printAlign)
@@ -226,6 +230,13 @@ orient = attr (H.AttrName "orient") <<< printOrient
 
 path :: forall r i. Array PathCommand -> IProp (path :: String | r) i
 path = attr (H.AttrName "path") <<< joinWith " " <<< toArrayString
+
+-- | An array of x-y value pairs (e.g. `[ Tuple x y ]`).
+points :: forall r i. Array (Tuple Number Number) -> IProp (points :: String | r) i
+points = attr (H.AttrName "points") <<< Array.intercalate " " <<< map (\(Tuple x_ y_) -> show x_ <> "," <> show y_)
+
+pathLength :: forall r i. Number -> IProp (pathLength :: Number | r) i
+pathLength = attr (H.AttrName "pathLength") <<< show
 
 preserveAspectRatio
   :: forall r i

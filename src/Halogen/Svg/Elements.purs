@@ -8,6 +8,8 @@ module Halogen.Svg.Elements
   , rect
   , path
   , line
+  , polyline
+  , polygon
   , text
   , foreignObject
   , defs
@@ -58,6 +60,12 @@ path props = element (ElemName "path") props []
 
 line :: forall p i. Leaf I.SVGline p i
 line props = element (ElemName "line") props []
+
+polyline :: forall p i. Leaf I.SVGpolyline p i
+polyline props = element (ElemName "polyline") props []
+
+polygon :: forall p i. Leaf I.SVGpolygon p i
+polygon props = element (ElemName "polygon") props []
 
 text :: forall p i. Node I.SVGtext p i
 text = element (ElemName "text")
