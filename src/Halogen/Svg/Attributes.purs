@@ -140,10 +140,10 @@ attributeName = attr (H.AttrName "attributeName")
 begin :: forall r i. String -> IProp (begin :: String | r) i
 begin = attr (H.AttrName "begin")
 
-class_ :: forall r i . H.ClassName -> IProp (class :: String | r) i
+class_ :: forall r i. H.ClassName -> IProp (class :: String | r) i
 class_ = attr (H.AttrName "class") <<< un H.ClassName
 
-classes :: forall r i . Array H.ClassName -> IProp (class :: String | r) i
+classes :: forall r i. Array H.ClassName -> IProp (class :: String | r) i
 classes = attr (H.AttrName "class") <<< joinWith " " <<< coerce
 
 cx :: forall r i. Number -> IProp (cx :: Number | r) i
