@@ -16,7 +16,6 @@ You can edit this file as you like.
   , "safe-coerce"
   , "strings"
   , "typelevel-prelude"
-  , "unsafe-coerce"
   , "web-dom"
   , "web-uievents"
   ]
