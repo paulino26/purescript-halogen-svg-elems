@@ -37,19 +37,18 @@ renderSize = case _ of
   Medium -> "medium"
   Large -> "large"
 
-
 rootComp :: Component Query Input Output Aff
 rootComp = Hooks.component \_ _ -> Hooks.do
   let
     testSvg size elems =
       SE.svg
-      [ SA.classes
-          [ ClassName "svg-test"
-          , ClassName $ "svg-test--" <> renderSize size
-          ]
-      , SA.viewBox 0.0 0.0 100.0 100.0
-      ]
-      elems
+        [ SA.classes
+            [ ClassName "svg-test"
+            , ClassName $ "svg-test--" <> renderSize size
+            ]
+        , SA.viewBox 0.0 0.0 100.0 100.0
+        ]
+        elems
 
     testSvg' size elem = testSvg size [ elem ]
 
