@@ -62,7 +62,7 @@ C indicates that the collection of attributes does not apply to that element
 -}
 
 -- These core attributes are applicable to every element
-type CoreAttributes r = (id :: String, "class" :: String | r)
+type CoreAttributes r = (id :: String, "class" :: String, style :: String, tabIndex :: Int, lang :: String | r)
 
 -- Subset of events that work on Firefox 60/Chromium 66
 type GlobalEventAttributes r =
