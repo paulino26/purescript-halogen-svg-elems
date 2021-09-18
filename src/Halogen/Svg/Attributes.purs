@@ -108,7 +108,6 @@ import Halogen.Svg.Attributes.TextAnchor (TextAnchor(..), printTextAnchor)
 import Halogen.Svg.Attributes.Transform (Transform(..), printTransform)
 import Safe.Coerce (coerce)
 
--- TODO ADT or free string?
 attributeName :: forall r i. String -> IProp (attributeName :: String | r) i
 attributeName = attr (H.AttrName "attributeName")
 
