@@ -4,9 +4,10 @@ You can edit this file as you like.
 -}
 { name = "halogen-svg"
 , dependencies =
-  [ "console"
+  [ "aff"
   , "effect"
   , "halogen"
+  , "halogen-hooks"
   , "halogen-vdom"
   , "maybe"
   , "newtype"
@@ -14,6 +15,7 @@ You can edit this file as you like.
   , "psci-support"
   , "safe-coerce"
   , "strings"
+  , "tuples"
   , "typelevel-prelude"
   , "unsafe-coerce"
   , "web-uievents"
