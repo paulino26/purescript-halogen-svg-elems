@@ -4,9 +4,38 @@ Notable changes to this project are documented in this file. The format is based
 
 ## [Unreleased]
 
+Breaking Changes:
+
+New Features:
+
+Other Improvements:
+
+## [v5.0.0](https://github.com/JordanMartinez/purescript-halogen-svg-elems/releases/tag/v5.0.0) - 2021-09-18
+
+Breaking Changes:
+- snake_case naming was changed to camelCase naming
+- Added `NoColor` constructor to `Color` and dropped the wrapping `Maybe` in its usages
+- Renamed `CSSLength(Nil)` to `CSSLength(NoCSSLength)`
+- Fix the class `Show` instances of `FontSize`, `CSSLength`, `Orient` and `MarkerUnit`
+- Rename `TextAnchor` constructors to, `AnchorStart`, `AnchorEnd`, and `AnchorMiddle`.
+- Define and use ADTs for `font-style`, `font-weight`, `font-stretch`, `stroke-linecap`, `stroke-linejoin`, and `stroke-miterlimit` attributes.
+- Removed `Util.js` and `Util.purs` files
+- `Duration` is now a type alias for a `Record`; use `defaultDuration` and override the needed values
+- `DurationF` was dropped
+- `Halogen.SVG.Core` was dropped. `element` and `attribute` were reimplemented with correct Halogen wrappers.
+
+New Features:
+- Add support for `use` element and its attributes
+- Add support for `polyline` element and its attributes
+- Add support for `polygon` element and its attributes
+
 Other improvements:
-- Reformatted to a consistent style and created seperate files for each ADT
-- All ADTs have Show and Eq instances
+- Add visual testing setup (but not many visual tests yet)
+- Updated package set to latest version
+- Updated dependencies as tracked via Spago
+- Reformatted code to a consistent style
+- Created separate files for each ADT
+- All ADTs now have Show and Eq instances
 
 ## [v4.0.0](https://github.com/JordanMartinez/purescript-halogen-svg-elems/releases/tag/v4.0.0) - 2021-07-22
 
