@@ -5,8 +5,9 @@ import Prelude
 import Data.Foldable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff, launchAff_)
-import Halogen (Component)
+import Halogen (ClassName(..), Component)
 import Halogen.Aff (selectElement)
+import Halogen.HTML as HH
 import Halogen.HTML.Properties as HP
 import Halogen.Hooks as Hooks
 import Halogen.Svg.Attributes (Color(..))
@@ -25,28 +26,62 @@ type Input = Int
 type Output = Int
 data Query a = Query a
 
+data SvgContainerSize
+  = Small
+  | Medium
+  | Large
+
+renderSize :: SvgContainerSize -> String
+renderSize = case _ of
+  Small -> "small"
+  Medium -> "medium"
+  Large -> "large"
+
+
 rootComp :: Component Query Input Output Aff
 rootComp = Hooks.component \_ _ -> Hooks.do
+  let
+    testSvg size elems =
+      SE.svg
+      [ SA.classes
+          [ ClassName "svg-test"
+          , ClassName $ "svg-test--" <> renderSize size
+          ]
+      , SA.viewBox 0.0 0.0 100.0 100.0
+      ]
+      elems
+
+    testSvg' size elem = testSvg size [ elem ]
+
   Hooks.pure do
-    SE.svg
-      [ SA.viewBox 0.0 0.0 30.0 10.0 ]
-      -- https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use
-      [ SE.circle
+    HH.div
+      [ HP.id "svg-test-container" ]
+      [ testSvg' Small $ SE.circle
           [ HP.id "circleId"
           , SA.cx 5.0
           , SA.cy 5.0
           , SA.r 4.0
           , SA.stroke $ Named "blue"
           ]
-      , SE.use
-          [ SA.href "#circleId"
-          , SA.x 10.0
-          , SA.fill $ Named "blue"
-          ]
-      , SE.use
-          [ SA.href "#circleId"
-          , SA.x 20.0
-          , SA.fill $ Named "white"
-          , SA.stroke $ Named "red"
+      , testSvg Small
+          -- https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use
+          [ SE.circle
+              [ HP.id "circleId"
+              , SA.cx 5.0
+              , SA.cy 5.0
+              , SA.r 4.0
+              , SA.stroke $ Named "blue"
+              ]
+          , SE.use
+              [ SA.href "#circleId"
+              , SA.x 10.0
+              , SA.fill $ Named "blue"
+              ]
+          , SE.use
+              [ SA.href "#circleId"
+              , SA.x 20.0
+              , SA.fill $ Named "white"
+              , SA.stroke $ Named "red"
+              ]
           ]
       ]
