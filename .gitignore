@@ -9,3 +9,5 @@ package-lock.json
 /generated-docs/
 .psc*
 .purs*
+
+/dist/test.js
