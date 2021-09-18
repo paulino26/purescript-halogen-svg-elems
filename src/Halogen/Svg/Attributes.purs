@@ -214,7 +214,6 @@ maskContentUnits = attr (H.AttrName "maskContentUnits") <<< printMaskUnit
 orient :: forall r i. Orient -> IProp (orient :: String | r) i
 orient = attr (H.AttrName "orient") <<< printOrient
 
--- TODO copied from `d`; adapt where needed
 path :: forall r i. Array PathCommand -> IProp (path :: String | r) i
 path = attr (H.AttrName "path") <<< joinWith " " <<< toArrayString
 
