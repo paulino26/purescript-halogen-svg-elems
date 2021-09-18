@@ -1,7 +1,6 @@
 module Halogen.Svg.Attributes.Duration where
 
-import Prelude
-import Data.Maybe (Maybe(..), maybe)
+import Data.Maybe (Maybe(..))
 
 -- | Use `defaultDuration` where all values are set to `Nothing`
 -- | and override the values you need.
