@@ -13,11 +13,16 @@ module Halogen.Svg.Attributes
   , module Halogen.Svg.Attributes.Duration
   , module Halogen.Svg.Attributes.FillState
   , module Halogen.Svg.Attributes.FontSize
+  , module Halogen.Svg.Attributes.FontStyle
+  , module Halogen.Svg.Attributes.FontStretch
+  , module Halogen.Svg.Attributes.FontWeight
   , module Halogen.Svg.Attributes.MarkerUnit
   , module Halogen.Svg.Attributes.MaskUnit
   , module Halogen.Svg.Attributes.MeetOrSlice
   , module Halogen.Svg.Attributes.Orient
   , module Halogen.Svg.Attributes.Path
+  , module Halogen.Svg.Attributes.StrokeLineCap
+  , module Halogen.Svg.Attributes.StrokeLineJoin
   , module Halogen.Svg.Attributes.TextAnchor
   , module Halogen.Svg.Attributes.Transform
   , attributeName
@@ -99,11 +104,16 @@ import Halogen.Svg.Attributes.Color (Color(..), printColor)
 import Halogen.Svg.Attributes.Duration (Duration)
 import Halogen.Svg.Attributes.FillState (FillState(..), printFillState)
 import Halogen.Svg.Attributes.FontSize (FontSize(..), printFontSize)
+import Halogen.Svg.Attributes.FontStretch (FontStretch, printFontStretch)
+import Halogen.Svg.Attributes.FontStyle (FontStyle, printFontStyle)
+import Halogen.Svg.Attributes.FontWeight (FontWeight, printFontWeight)
 import Halogen.Svg.Attributes.MarkerUnit (MarkerUnit(..), printMarkerUnit)
 import Halogen.Svg.Attributes.MaskUnit (MaskUnit(..), printMaskUnit)
 import Halogen.Svg.Attributes.MeetOrSlice (MeetOrSlice(..), printMeetOrSlice)
 import Halogen.Svg.Attributes.Orient (Orient(..), printOrient)
 import Halogen.Svg.Attributes.Path (PathCommand, CommandPositionReference(..), CommandArcChoice(..), CommandSweepChoice(..), toArrayString, m, l, h, v, c, s, q, t, a, z)
+import Halogen.Svg.Attributes.StrokeLineCap (StrokeLineCap, printStrokeLineCap)
+import Halogen.Svg.Attributes.StrokeLineJoin (StrokeLineJoin, printStrokeLineJoin)
 import Halogen.Svg.Attributes.TextAnchor (TextAnchor(..), printTextAnchor)
 import Halogen.Svg.Attributes.Transform (Transform(..), printTransform)
 import Safe.Coerce (coerce)
@@ -161,17 +171,17 @@ fontSize = attr (H.AttrName "font-size") <<< printFontSize
 fontSizeAdjust :: forall r i. Number -> IProp (fontSizeAdjust :: String | r) i
 fontSizeAdjust = attr (H.AttrName "font-size-adjust") <<< show
 
-fontStretch :: forall r i. String -> IProp (fontStretch :: String | r) i
-fontStretch = attr (H.AttrName "font-stretch")
+fontStretch :: forall r i. FontStretch -> IProp (fontStretch :: String | r) i
+fontStretch = attr (H.AttrName "font-stretch") <<< printFontStretch
 
-fontStyle :: forall r i. String -> IProp (fontStyle :: String | r) i
-fontStyle = attr (H.AttrName "font-style")
+fontStyle :: forall r i. FontStyle -> IProp (fontStyle :: String | r) i
+fontStyle = attr (H.AttrName "font-style") <<< printFontStyle
 
 fontVariant :: forall r i. String -> IProp (fontVariant :: String | r) i
 fontVariant = attr (H.AttrName "font-variant")
 
-fontWeight :: forall r i. String -> IProp (fontWeight :: String | r) i
-fontWeight = attr (H.AttrName "font-weight")
+fontWeight :: forall r i. FontWeight -> IProp (fontWeight :: String | r) i
+fontWeight = attr (H.AttrName "font-weight") <<< printFontWeight
 
 -- https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/from
 from :: forall r i. String -> IProp (from :: String | r) i
@@ -257,14 +267,16 @@ strokeDashArray = attr (H.AttrName "stroke-dasharray")
 strokeDashOffset :: forall r i. Number -> IProp (strokeDashOffset :: String | r) i
 strokeDashOffset = attr (H.AttrName "stroke-dashoffset") <<< show
 
-strokeLineCap :: forall r i. String -> IProp (strokeLineCap :: String | r) i
-strokeLineCap = attr (H.AttrName "stroke-linecap")
+strokeLineCap :: forall r i. StrokeLineCap -> IProp (strokeLineCap :: String | r) i
+strokeLineCap = attr (H.AttrName "stroke-linecap") <<< printStrokeLineCap
 
-strokeLineJoin :: forall r i. String -> IProp (strokeLineJoin :: String | r) i
-strokeLineJoin = attr (H.AttrName "stroke-linejoin")
+strokeLineJoin :: forall r i. StrokeLineJoin -> IProp (strokeLineJoin :: String | r) i
+strokeLineJoin = attr (H.AttrName "stroke-linejoin") <<< printStrokeLineJoin
 
-strokeMiterLimit :: forall r i. String -> IProp (strokeMiterLimit :: String | r) i
-strokeMiterLimit = attr (H.AttrName "stroke-miterlimit")
+-- | The `Number` arg must be greater than or equal to 1. Thus, this function
+-- | will use `1.0` if given any value less than `1.0`.
+strokeMiterLimit :: forall r i. Number -> IProp (strokeMiterLimit :: String | r) i
+strokeMiterLimit = attr (H.AttrName "stroke-miterlimit") <<< show <<< max 1.0
 
 strokeOpacity :: forall r i. Number -> IProp (strokeOpacity :: String | r) i
 strokeOpacity = attr (H.AttrName "stroke-opacity") <<< show
