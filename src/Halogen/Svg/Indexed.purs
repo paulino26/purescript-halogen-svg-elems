@@ -258,7 +258,8 @@ type SVGtext
 
 type SVGuse
   = GlobalAttributes + StrokeAttributes + FillAttributes
-  + ( x :: Number
+  +
+    ( x :: Number
     , y :: Number
     , width :: Number
     , height :: Number

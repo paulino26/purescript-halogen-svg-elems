@@ -32,7 +32,7 @@ import Halogen.Svg.Indexed as I
 -- | This `element`rather than `Halogen.HTML.Elements.element` must be used
 -- | because all SVG elements created via JavaScript must have the svg namespace:
 -- | `"http://www.w3.org/2000/svg"`
-element :: forall r w i . ElemName -> Array (IProp r i) -> Array (HTML w i) -> HTML w i
+element :: forall r w i. ElemName -> Array (IProp r i) -> Array (HTML w i) -> HTML w i
 element = elementNS (Namespace "http://www.w3.org/2000/svg")
 
 svg :: forall p i. Node I.SVGsvg p i
@@ -65,7 +65,7 @@ text = element (ElemName "text")
 use :: forall p i. Leaf I.SVGuse p i
 use props = element (ElemName "use") props []
 
-foreignObject :: forall p i . Node I.SVGforeignObject p i
+foreignObject :: forall p i. Node I.SVGforeignObject p i
 foreignObject = element (ElemName "foreignObject")
 
 defs :: forall p i. Node I.SVGg p i
