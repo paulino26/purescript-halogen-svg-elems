@@ -6,18 +6,18 @@ You can edit this file as you like.
 , dependencies =
   [ "aff"
   , "effect"
+  , "foldable-traversable"
   , "halogen"
   , "halogen-hooks"
-  , "halogen-vdom"
   , "maybe"
   , "newtype"
   , "prelude"
   , "psci-support"
   , "safe-coerce"
   , "strings"
-  , "tuples"
   , "typelevel-prelude"
   , "unsafe-coerce"
+  , "web-dom"
   , "web-uievents"
   ]
 , packages = ./packages.dhall
