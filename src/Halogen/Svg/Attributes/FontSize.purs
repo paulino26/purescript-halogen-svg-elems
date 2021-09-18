@@ -22,19 +22,16 @@ derive instance eqFontSize :: Eq FontSize
 
 instance showFontSize :: Show FontSize where
   show = case _ of
-    XXSmall -> "xx-small"
-    XSmall -> "x-small"
-    Small -> "small"
-    Medium -> "medium"
-    Large -> "large"
-    XLarge -> "x-large"
-    XXLarge -> "xx-large"
-    Smaller -> "smaller"
-    Larger -> "larger"
-    FontSizeLength l -> printCSSLength l
-
--- This instance of Show is currently identical to printCSSLength. That is
--- likely to change so don't rely on it
+    XXSmall -> "XXSmall"
+    XSmall -> "XSmall"
+    Small -> "Small"
+    Medium -> "Medium"
+    Large -> "Large"
+    XLarge -> "XLarge"
+    XXLarge -> "XXLarge"
+    Smaller -> "Smaller"
+    Larger -> "Larger"
+    FontSizeLength l -> "(FontSizeLength " <> printCSSLength l <> ")"
 
 printFontSize :: FontSize -> String
 printFontSize = case _ of
