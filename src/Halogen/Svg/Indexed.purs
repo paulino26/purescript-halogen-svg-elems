@@ -257,13 +257,13 @@ type SVGtext
     )
 
 type SVGuse
-  = GlobalAttributes
+  = GlobalAttributes + StrokeAttributes + FillAttributes
   + ( x :: Number
     , y :: Number
     , width :: Number
     , height :: Number
     , transform :: String
-    , xlinkHref :: String
+    , href :: String
     )
 
 --------------------------------------------------------------------------------
