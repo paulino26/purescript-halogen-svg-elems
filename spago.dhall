@@ -10,6 +10,7 @@ You can edit this file as you like.
   , "halogen"
   , "halogen-vdom"
   , "maybe"
+  , "newtype"
   , "prelude"
   , "psci-support"
   , "safe-coerce"

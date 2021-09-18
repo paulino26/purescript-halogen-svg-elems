@@ -20,10 +20,11 @@ module Halogen.Svg.Attributes
   , module Halogen.Svg.Attributes.Path
   , module Halogen.Svg.Attributes.TextAnchor
   , module Halogen.Svg.Attributes.Transform
-  , module HPExport
   , attr
   , attributeName
   , begin
+  , class_
+  , classes
   , cx
   , cy
   , d
@@ -87,10 +88,10 @@ module Halogen.Svg.Attributes
 
 import Prelude
 import Data.Maybe (Maybe(..), maybe)
+import Data.Newtype (un)
 import Data.String (joinWith)
 import Halogen.HTML.Core as H
 import Halogen.HTML.Properties (IProp, attrNS)
-import Halogen.HTML.Properties (class_, classes) as HPExport
 import Halogen.Svg.Attributes.Align (Align(..), printAlign)
 import Halogen.Svg.Attributes.Baseline (Baseline(..), printBaseline)
 import Halogen.Svg.Attributes.Color (Color(..), printColor)
@@ -105,6 +106,7 @@ import Halogen.Svg.Attributes.Orient (Orient(..), printOrient)
 import Halogen.Svg.Attributes.TextAnchor (TextAnchor(..), printTextAnchor)
 import Halogen.Svg.Attributes.Transform (Transform(..), printTransform)
 import Halogen.Svg.Core as Core
+import Safe.Coerce (coerce)
 import Unsafe.Coerce (unsafeCoerce)
 import Halogen.Svg.Attributes.Path
   ( PathCommand
@@ -137,6 +139,12 @@ attributeName = attr (H.AttrName "attributeName")
 -- https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/begin
 begin :: forall r i. String -> IProp (begin :: String | r) i
 begin = attr (H.AttrName "begin")
+
+class_ :: forall r i . H.ClassName -> IProp (class :: String | r) i
+class_ = attr (H.AttrName "class") <<< un H.ClassName
+
+classes :: forall r i . Array H.ClassName -> IProp (class :: String | r) i
+classes = attr (H.AttrName "class") <<< joinWith " " <<< coerce
 
 cx :: forall r i. Number -> IProp (cx :: Number | r) i
 cx = attr (H.AttrName "cx") <<< show
