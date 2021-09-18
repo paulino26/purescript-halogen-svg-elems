@@ -1,3 +1,5 @@
+-- | Note: an element may contain more attributes than what
+-- | we currently allow in its corresponding `SVGelemName`.
 module Halogen.Svg.Indexed
   ( CoreAttributes
   , GlobalEventAttributes

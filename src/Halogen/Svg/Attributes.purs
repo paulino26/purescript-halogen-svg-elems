@@ -1,10 +1,11 @@
--- | Each attribute has two functions: `show` from the type class `Show` and
--- | `printX` where X corresponds to the type. When printing the value for SVG
--- | attributes, use the `printX` function. For example:
+
+-- | Similar to `Halogen.HTML.Properties`. You should always use
+-- | this module's entities (e.g. `class_`) over its corresponding
+-- | value in `Halogen.HTML.Properties (e.g. `HP.class_`).
 -- |
--- |   `fill = attr (H.AttrName "fill") <<< printColor`
--- |
--- | When debugging, use either `show` or `printX`.
+-- | When Algebraic Data Types (ADTs) are used, use the
+-- | `show` function to display what the ADT is and the `printX` function
+-- | to render the corresponding String value that should appear in the HTML.
 module Halogen.Svg.Attributes
   ( module Halogen.Svg.Attributes.Align
   , module Halogen.Svg.Attributes.Baseline
@@ -89,8 +90,6 @@ module Halogen.Svg.Attributes
   , y2
   , xlinkHref
   ) where
-
--- Like Halogen.HTML.Properties
 
 import Prelude
 

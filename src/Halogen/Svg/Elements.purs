@@ -1,3 +1,8 @@
+-- | Similar to `Halogen.HTML as HH` but contains SVG elements.
+-- | We recommend importing this module via the `SE` module alias:
+-- | ```
+-- | import Halogen.Svg.Elements as SE
+-- | ```
 module Halogen.Svg.Elements
   ( element
   , svg
