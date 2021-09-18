@@ -5,6 +5,7 @@ You can edit this file as you like.
 { name = "halogen-svg"
 , dependencies =
   [ "aff"
+  , "arrays"
   , "effect"
   , "foldable-traversable"
   , "halogen"
@@ -15,6 +16,7 @@ You can edit this file as you like.
   , "psci-support"
   , "safe-coerce"
   , "strings"
+  , "tuples"
   , "typelevel-prelude"
   , "web-dom"
   , "web-uievents"
