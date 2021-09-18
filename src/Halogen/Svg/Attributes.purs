@@ -52,7 +52,6 @@ module Halogen.Svg.Attributes
   , refX, refY
   , repeatCount
   , rx, ry
-  , seconds
   , stroke
   , strokeDashArray
   , strokeDashOffset
@@ -73,7 +72,7 @@ module Halogen.Svg.Attributes
 -- Like Halogen.HTML.Properties
 
 import Prelude
-import Data.Maybe (Maybe(..))
+import Data.Maybe (Maybe(..), maybe)
 import Data.String (joinWith)
 import Halogen.HTML.Core as H
 import Halogen.HTML.Properties (IProp, attrNS)
@@ -82,8 +81,7 @@ import Halogen.Svg.Attributes.Align (Align(..), printAlign)
 import Halogen.Svg.Attributes.Baseline (Baseline(..), printBaseline)
 import Halogen.Svg.Attributes.Color (Color(..), printColor)
 import Halogen.Svg.Attributes.CSSLength (CSSLength(..), printCSSLength)
-import Halogen.Svg.Attributes.Duration ( Duration, printDuration
-                                       , DurationF(..), printDurationF )
+import Halogen.Svg.Attributes.Duration (Duration)
 import Halogen.Svg.Attributes.FillState (FillState(..), printFillState)
 import Halogen.Svg.Attributes.FontSize (FontSize(..), printFontSize)
 import Halogen.Svg.Attributes.MarkerUnit (MarkerUnit(..), printMarkerUnit)
@@ -131,6 +129,12 @@ dominantBaseline = attr (H.AttrName "dominant-baseline") <<< printBaseline
 
 dur :: forall r i. Duration -> IProp (dur :: String | r) i
 dur = attr (H.AttrName "dur") <<< printDuration
+  where
+  printDuration :: Duration -> String
+  printDuration { hours, minutes, seconds, milliseconds } =
+    f "h" hours <> f "m" minutes <> f "s" seconds <> f "i" milliseconds
+
+  f unit = maybe "" (\val -> show val <> unit)
 
 fill :: forall r i. Color -> IProp (fill :: String | r) i
 fill = attr (H.AttrName "fill") <<< printColor
@@ -235,10 +239,6 @@ rx = attr (H.AttrName "rx") <<< show
 
 ry :: forall r i. Number -> IProp (ry :: Number | r) i
 ry = attr (H.AttrName "ry") <<< show
-
--- TODO add other constructors
-seconds :: Number -> Duration
-seconds s_ = Duration Nothing Nothing (Just s_) Nothing
 
 stroke :: forall r i. Color -> IProp (stroke :: String | r) i
 stroke = attr (H.AttrName "stroke") <<< printColor

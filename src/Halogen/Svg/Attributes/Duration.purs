@@ -1,34 +1,22 @@
-module Halogen.Svg.Attributes.Duration
-  ( Duration
-  , printDuration
-  , DurationF(..)
-  , printDurationF
-  ) where
--- TODO: DurationF and printDurationF probably shouldn't be exported but
--- removing them from the export list would technically be a breaking change
+module Halogen.Svg.Attributes.Duration where
 
 import Prelude
-import Data.Maybe (Maybe, maybe)
+import Data.Maybe (Maybe(..), maybe)
 
--- | https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/dur
-data DurationF a = Duration (Maybe a) (Maybe a) (Maybe a) (Maybe a)
--- ^ TODO hours minutes seconds millis
+-- | Use `defaultDuration` where all values are set to `Nothing`
+-- | and override the values you need.
+-- | See https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/dur
+type Duration =
+  { hours :: Maybe Number
+  , minutes :: Maybe Number
+  , seconds :: Maybe Number
+  , milliseconds :: Maybe Number
+  }
 
-derive instance eqDurationF :: Eq a => Eq (DurationF a)
-
-derive instance functorDurationF :: Functor DurationF
-
-instance showDurationF :: Show Duration where
-  show (Duration h m s i) =
-    "(Duration " <> show h <> " " <> show m <> " " <> show s <> " " <> show i <> ")"
-
-printDurationF :: forall a. Show a => DurationF a -> String
-printDurationF (Duration h m s i) = f "h" h <> f "m" m <> f "s" s <> f "i" i
-  where f u = maybe "" (\val -> show val <> u)
-
-type Duration = DurationF Number
-
--- TODO derive Show instance for DurationF
-
-printDuration :: Duration -> String
-printDuration = printDurationF
+defaultDuration :: Duration
+defaultDuration =
+  { hours: Nothing
+  , minutes: Nothing
+  , seconds: Nothing
+  , milliseconds: Nothing
+  }
