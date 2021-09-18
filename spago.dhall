@@ -4,8 +4,7 @@ You can edit this file as you like.
 -}
 { name = "halogen-svg"
 , dependencies =
-  [ "aff"
-  , "console"
+  [ "console"
   , "effect"
   , "halogen"
   , "halogen-vdom"
@@ -17,7 +16,6 @@ You can edit this file as you like.
   , "strings"
   , "typelevel-prelude"
   , "unsafe-coerce"
-  , "web-html"
   , "web-uievents"
   ]
 , packages = ./packages.dhall
