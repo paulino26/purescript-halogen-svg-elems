@@ -154,7 +154,7 @@ dur = attr (H.AttrName "dur") <<< printDuration
   printDuration { hours, minutes, seconds, milliseconds } =
     f "h" hours <> f "m" minutes <> f "s" seconds <> f "i" milliseconds
 
-  f unit = maybe "" (\val -> show val <> unit)
+  f unit_ = maybe "" (\val -> show val <> unit_)
 
 fill :: forall r i. Color -> IProp (fill :: String | r) i
 fill = attr (H.AttrName "fill") <<< printColor
