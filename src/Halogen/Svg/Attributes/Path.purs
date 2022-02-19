@@ -108,9 +108,11 @@ c ref x1_ y1_ x2_ y2_ x_ y_ =
     <> show x1_
     <> ","
     <> show y1_
+    <> " "
     <> show x2_
     <> ","
     <> show y2_
+    <> " "
     <> show x_
     <> ","
     <> show y_
